@@ -1,0 +1,55 @@
+body{
+  margin: 0;
+  width: 100%;
+}
+.lable {
+  
+    padding: 5px;     
+    color: #4E9CAF;
+    font-weight: bold;
+    font-style: italic;
+    text-decoration: none;
+    font-family: sans-serif;
+}
+
+.button {
+	display:block;
+    background: #4E9CAF;
+    padding: 5px;
+    text-align: center;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+hr {
+	border-color: #4E9CAF;
+	border-style: groove;	
+}    
+
+.left-container{  
+  width: 20%;  
+  float: left;
+  padding: 10px;
+  text-align: left;
+  border-radius: 5px;  
+}
+
+.right-container {  
+  width: 80%;
+  padding: 10px;
+  text-align: left;
+  border-radius: 5px;
+  
+}
+.button-container {  
+  display: inline-block;
+  width: 10%;
+  text-align: center;
+  border-radius: 5px;  
+}
+
+.table {
+	text-align:center;
+}
