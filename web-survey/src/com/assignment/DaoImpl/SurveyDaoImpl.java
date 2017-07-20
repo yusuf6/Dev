@@ -1,6 +1,5 @@
 package com.assignment.DaoImpl;
 
-import java.util.Iterator;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -11,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.assignment.Dao.SurveyDao;
+import com.assignment.model.Answer;
+import com.assignment.model.Question;
 import com.assignment.model.Survey;
 
 @Repository
@@ -31,6 +32,8 @@ public class SurveyDaoImpl implements SurveyDao {
 	public Survey getSurveyDtls(long surveyId) {
 		
 		Survey survey = null;
+		Question question = null;
+		Answer answer = null;
 		
 		Session session = sessionFactory.getCurrentSession();
 		
@@ -45,9 +48,24 @@ public class SurveyDaoImpl implements SurveyDao {
 		System.out.println("size "+surveyList.size());
 		
 		if(surveyList!=null && surveyList.size() > 0 ) {
-			
-			//survey = (Survey)surveyList.get(0);
+
+			for(int i=0; i<surveyList.size(); i++) {
+				
+				Object row[] = (Object[])surveyList.get(i);
+				
+				if(i == 0) {
+					survey = (Survey)row[0]; // No need to iterate this for each question and answer.
+				}
+				
+				question = (Question)row[1];
+				answer = (Answer) row[2];
+				
+				question.setAnswer(answer);
+				survey.getQuestion().add(question);
+				
+			}
 		}
+		transaction.commit();		
 		return survey;
 		
 	}

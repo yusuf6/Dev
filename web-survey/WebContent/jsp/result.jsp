@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -62,6 +63,14 @@ hr {
 .table {
 	text-align:center;
 }
+
+ul {
+ margin: 0; 
+ text-align: left;
+	}
+li { margin: -5px;
+	text-align: left;}
+
 </style>
 
 </head>
@@ -97,7 +106,7 @@ hr {
 			<label class="lable">Name</label>
 		</div>
 		<div class="right-container">
-			<input type="text" name="name" id="name"/>
+			${survey.name}
 		</div>
 	</div>
 	<div class="row">
@@ -105,7 +114,7 @@ hr {
 			<label class="lable">Date of Birth</label>
 		</div>
 		<div class="right-container">
-			<input type="text" name="dob" id="dob"/>
+			${survey.dob}
 		</div>		
 	</div>
 	<div class="row">
@@ -113,7 +122,7 @@ hr {
 			<label class="lable">Phone</label>
 		</div>
 		<div class="right-container">
-			<input type="text" name="phone" id="phone"/>
+			${survey.phone}
 		</div>		
 	</div>
 	<div class="row">
@@ -121,20 +130,45 @@ hr {
 			<label class="lable">Address</label>
 		</div>
 		<div class="right-container">
-			<textarea name="address" id="address"> </textarea>			
-			<a class="lable" href="/web-survey/result">Add New Question</a>
+			${survey.address}
 		</div>		
 	</div>
 </div>
 <hr></hr>
 <br><br>
 <div class="table">
-	<div class="button-container">
-		<a href="/web-survey/" class="button">Save</a>
-	</div>
-	<div class="button-container">
-		<a href="/web-survey/" class="button">Cancel</a>
-	</div>	
+	<fieldset>
+	<legend align="left">Questions: </legend>
+	<c:forEach items="${survey.question}" var="question">
+       <ul >
+       	<li>
+	       	
+				<label class="lable" >${question.question}</label>
+					
+			
+			<ul>
+	       		<li >
+		       		
+						<c:if test="${not empty question.answer.multiLineAnswer}">
+							 <label class="lable">${question.answer.multiLineAnswer}</label>
+						</c:if>
+						<c:if test="${not empty question.answer.multiLineAnswer}">
+							 <label class="lable">${question.answer.multiLineAnswer}</label>
+						</c:if>
+						<c:if test="${not empty question.answer.singleChoiceAnswer}">
+							 <label class="lable">${question.answer.singleChoiceAnswer}</label>
+						</c:if>
+						
+					
+				</li>
+       		</ul>
+       	</li>
+       	
+       	
+       	
+       </ul>
+    </c:forEach>
+    </fieldset>
 </div>
 </body>
 </html>

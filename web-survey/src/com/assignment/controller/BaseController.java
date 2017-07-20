@@ -6,7 +6,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -51,10 +50,7 @@ public class BaseController {
 		Survey surveyResult = surveyService.surveyResult(surveyId);
 		
 		System.out.println("surveyId" + surveyId);
-//		 System.out.println(" survey question " + surveyResult.getQuestion().size());
-//		 System.out.println(" survey id " + surveyResult.getSurveyId());
-//		 System.out.println(" survey name " + surveyResult.getName());
-		
+		model.addAttribute("survey", surveyResult);
 		return RESULT_PAGE;
 		
 	}
@@ -77,13 +73,10 @@ public class BaseController {
 			method = RequestMethod.GET)
 	public String getSurvey(
 			@RequestParam(value = "name")String name,
-			@RequestParam(value = "dob") @DateTimeFormat(pattern="dd-MM-yyyy") Date dob,
+			//@RequestParam(value = "dob") @DateTimeFormat(pattern="dd-MM-yyyy") Date dob,  
 			@RequestParam(value = "phone")String  phone,
 			@RequestParam(value = "address")String address,
 			ModelMap model) throws ParseException   {
-		
-		System.out.println("format "+ dob);
-		
 		
 		
 //		DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy"); 
@@ -93,12 +86,11 @@ public class BaseController {
 		
 		survey.setName(name);
 		survey.setAddress(address);
-		survey.setDob(new Date(dob.getTime()));
+		survey.setDob(new Date());
 		survey.setPhone(Long.parseLong(phone));
 	
-		System.out.println("sdf.parse(dob) +" +survey.getDob());
-		model.addAttribute("survey", survey);
-		System.out.println("dsfdsdf");
+		
+		model.addAttribute("survey", survey);		
 		return QUESTION_PAGE;
 		
 	}
