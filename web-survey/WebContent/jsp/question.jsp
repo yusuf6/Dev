@@ -7,25 +7,7 @@
 <title>Question</title>
 <script type="text/javascript">
 
-function changeTheAnswerField()
-{	
-	var type = document.getElementById('type').value;
-	if(type == "1") {
-		document.getElementById('singleChoice').style.display='none';
-		document.getElementById('multiChoiceDiv').style.display='none';
-		document.getElementById('multiLineText').style.display='block';
-	}
-	if(type == "2") {
-		document.getElementById('singleChoice').style.display='none';
-		document.getElementById('multiLineText').style.display='none';
-		document.getElementById('multiChoiceDiv').style.display='';
-	}
-	if(type == "3") {
-		document.getElementById('multiLineText').style.display='none';
-		document.getElementById('multiChoiceDiv').style.display='none';
-		document.getElementById('singleChoice').style.display='';
-	}
-} 
+
 
 </script>
 </head>

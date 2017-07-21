@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -36,10 +37,7 @@ public class BaseController {
 	@RequestMapping(value="/", method = RequestMethod.GET)
 	public String homePage(ModelMap model) {
 		
-		
-		
 		return HOME_PAGE;
-		
 	}
 	
 	@RequestMapping(value="/result",
@@ -49,7 +47,6 @@ public class BaseController {
 		
 		Survey surveyResult = surveyService.surveyResult(surveyId);
 		
-		System.out.println("surveyId" + surveyId);
 		model.addAttribute("survey", surveyResult);
 		return RESULT_PAGE;
 		
@@ -58,12 +55,9 @@ public class BaseController {
 	@RequestMapping(value="/save", method = RequestMethod.POST)
 	public String saveSurvey(ModelMap model) {
 		
-		System.out.println("sdfasdfasdf"+survey.toString());
-	
-		
 		long surveyId = surveyService.saveSurvey(survey);
 		model.addAttribute("surveyId",surveyId);
-		
+		model.addAttribute("msg", "Survey has been added sucessfully.");
 		return HOME_PAGE;
 		
 	}
@@ -73,20 +67,15 @@ public class BaseController {
 			method = RequestMethod.GET)
 	public String getSurvey(
 			@RequestParam(value = "name")String name,
-			//@RequestParam(value = "dob") @DateTimeFormat(pattern="dd-MM-yyyy") Date dob,  
+			@RequestParam(value = "dob") @DateTimeFormat(pattern="dd-MM-yyyy") String dob,  
 			@RequestParam(value = "phone")String  phone,
 			@RequestParam(value = "address")String address,
 			ModelMap model) throws ParseException   {
 		
-		
-//		DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy"); 
-//		Date date = (Date)formatter.parse(dob);
-//		SimpleDateFormat newFormat = new SimpleDateFormat("MM-dd-yyyy");
-//		Date finalDate = newFormat.parse(newFormat.format(date));
-		
+
 		survey.setName(name);
 		survey.setAddress(address);
-		survey.setDob(new Date());
+		survey.setDob(dob);
 		survey.setPhone(Long.parseLong(phone));
 	
 		
@@ -116,8 +105,8 @@ public class BaseController {
 		
 		survey.setQuestion(questions);
 		
-		System.out.println("size "+ questions.size() +"dob " +survey.getDob());
 		model.addAttribute("survey",survey);
+		model.addAttribute("msg", "Question has been added sucessfully.");
 		return HOME_PAGE;
 		
 	}

@@ -53,3 +53,34 @@ hr {
 .table {
 	text-align:center;
 }
+
+ul {
+	margin : 0;
+	text-align: left;
+	padding : 20 px;
+}
+
+li {
+	margin : -5px;
+	text-align: left;
+	padding : 20 px;
+}
+
+legend {
+    display: block;
+    padding-left: 2px;
+    padding-right: 2px;
+    border: none;    
+    font-weight: bold;
+    font-style: italic;    
+    font-family: sans-serif;    
+}
+
+.msg {
+	
+	text-align:center;
+    color: red;
+    font-weight: bold;
+    font-style: italic;
+    font-family: sans-serif;
+}

@@ -14,6 +14,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.Cascade;
+import org.springframework.format.annotation.NumberFormat;
 
 @Entity
 @Table(name="survey")
@@ -28,8 +29,7 @@ public class Survey {
 	private String name;
 	
 	@Column(name="dob")
-	@Temporal(TemporalType.TIMESTAMP)
-	Date dob;
+	String dob;
 	
 	@Column(name="phone")
 	private Long phone;
@@ -76,12 +76,12 @@ public class Survey {
 	}
 
 
-	public Date getDob() {
+	public String getDob() {
 		return dob;
 	}
 
 
-	public void setDob(Date dob) {
+	public void setDob(String dob) {
 		this.dob = dob;
 	}
 

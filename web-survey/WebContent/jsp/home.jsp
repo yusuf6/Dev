@@ -10,17 +10,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Home</title>
-<script>
-
-function addQuestion() {
-	
-	alert();
-	var element = document.getElementById("addQuestion");
-	element.href="/web-survey/addQuestion?name="+document.getElementById("name").value+"&dob="+document.getElementById("dob").value+"&phone="+document.getElementById("phone").value+"&address="+document.getElementById("address").value;
-	
-}
-
-</script>
 </head>
 <body>
 
@@ -28,7 +17,7 @@ function addQuestion() {
 	<jsp:param name="surveyId" value="${surveyId}" />
 </jsp:include>
 
-<form method="post" action="/web-survey/save">
+<form name ="surveyForm" method="post" action="/web-survey/save">
 <input type="hidden" name="surveyId" id="surveyId" value="${surveyId}">
 <div class = "table">
 	<div class="row">
@@ -72,7 +61,7 @@ function addQuestion() {
 <div class="table">
 	<div class="button-container">
 		<!-- <a href="/web-survey/save" class="button">Save</a> -->
-		<input type="Submit" value="Save" class="button"/>
+		<input type="button" value="Save" class="button" onClick="submitform();"/>
 	</div>
 	<div class="button-container">
 		<!-- <a href="/web-survey/" class="button">Cancel</a> -->
